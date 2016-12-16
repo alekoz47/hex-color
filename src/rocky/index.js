@@ -36,7 +36,7 @@ function dateToHex(lod) {
 }
 
 rocky.on("draw", function(event) {
-	draw(event.context);
+	draw(event);
 });
 
 rocky.on("minutechange", function(event) {
