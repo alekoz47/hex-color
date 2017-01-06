@@ -53,7 +53,6 @@ function dateToHex(d, h, m) {
 	d = Math.round(convertRange(d, 0, 31, 0, 255));
 	h = Math.round(convertRange(h, 0, 24, 0, 255));
 	m = Math.round(convertRange(m, 0, 60, 0, 255));
-	console.log("integer color: " + d + " : " + h + " : " + m);
 	
 	d = extendString(d.toString(16), 2);
 	h = extendString(h.toString(16), 2);
