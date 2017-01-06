@@ -15,22 +15,34 @@ function draw(ctx) {
 }
 
 function drawBackground(ctx, color, d, h, m, x, y) {
-	ctx.fillStyle = color;
+	ctx.fillStyle = "#" + color;
 	ctx.fillRect(0, 0, x, y);
 }
 
 function drawTime(ctx, color, d, h, m, x, y) {
 	// TODO: Fix this code splitting hex into individual values again
-	var hex = "0x";
+	//var hex = "0x";
+	/*
 	var colorList = color.split("");
-	var red = hex.concat(colorList.slice(1, 3));
-	var green = hex.concat(colorList.slice(3, 5));
-	var blue = hex.concat(colorList.slice(5));
+	console.log(colorList);
+	var red = hex.concat(colorList.slice(1, 4));
+	var green = hex.concat(colorList.slice(4, 6));
+	var blue = hex.concat(colorList.slice(6));
 	console.log(red + green + blue);
 	red = parseInt(red, 10);
 	green = parseInt(green, 10);
 	blue = parseInt(blue, 10);
 	console.log(red + " : " + green + " : " + blue);
+	*/
+	
+	console.log("original color: " + color);
+	color = parseInt(color, 16);
+	console.log("parsed color: " + color);
+	
+	var red = color & 0xFF0000;
+	var green = color & 0x00FF00;
+	var blue = color & 0x0000FF;
+	console.log("split color: " + red + " : " + green + " : " + blue);
 	
 	if ((0.299 * red + 0.587 * green + 0.114 * blue) > 127) {
 		ctx.fillStyle = "black";
@@ -52,14 +64,14 @@ function dateToHex(d, h, m) {
 	d = Math.round(convertRange(d, 0, 31, 0, 255));
 	h = Math.round(convertRange(h, 0, 24, 0, 255));
 	m = Math.round(convertRange(m, 0, 60, 0, 255));
-	console.log(d + " : " + h + " : " + m);
+	console.log("integer color: " + d + " : " + h + " : " + m);
 	
 	d = extendString(d.toString(16), 2);
 	h = extendString(h.toString(16), 2);
 	m = extendString(m.toString(16), 2);
 	
-	var dateHexString = "#" + d.toString(16) + h.toString(16) + m.toString(16);
-	console.log(dateHexString);
+	var dateHexString = d.toString(16) + h.toString(16) + m.toString(16);
+	console.log("hex color: " + dateHexString);
 	return dateHexString;
 }
 
