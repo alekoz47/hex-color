@@ -20,10 +20,7 @@ function drawBackground(ctx, color, d, h, m, x, y) {
 }
 
 function drawTime(ctx, color, d, h, m, x, y) {
-	console.log("original color: " + color);
 	color = parseInt(color, 16);
-	console.log("parsed color: " + color);
-	
 	var red = (color & 0xFF0000) >> 16;
 	var green = (color & 0xFF00) >> 8;
 	var blue = color & 0xFF;
