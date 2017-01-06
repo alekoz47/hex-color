@@ -20,28 +20,13 @@ function drawBackground(ctx, color, d, h, m, x, y) {
 }
 
 function drawTime(ctx, color, d, h, m, x, y) {
-	// TODO: Fix this code splitting hex into individual values again
-	//var hex = "0x";
-	/*
-	var colorList = color.split("");
-	console.log(colorList);
-	var red = hex.concat(colorList.slice(1, 4));
-	var green = hex.concat(colorList.slice(4, 6));
-	var blue = hex.concat(colorList.slice(6));
-	console.log(red + green + blue);
-	red = parseInt(red, 10);
-	green = parseInt(green, 10);
-	blue = parseInt(blue, 10);
-	console.log(red + " : " + green + " : " + blue);
-	*/
-	
 	console.log("original color: " + color);
 	color = parseInt(color, 16);
 	console.log("parsed color: " + color);
 	
-	var red = color & 0xFF0000;
-	var green = color & 0x00FF00;
-	var blue = color & 0x0000FF;
+	var red = (color & 0xFF0000) >> 16;
+	var green = (color & 0xFF00) >> 8;
+	var blue = color & 0xFF;
 	console.log("split color: " + red + " : " + green + " : " + blue);
 	
 	if ((0.299 * red + 0.587 * green + 0.114 * blue) > 127) {
