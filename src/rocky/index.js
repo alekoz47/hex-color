@@ -43,6 +43,13 @@ function drawTime(ctx, color, d, h, m, x, y) {
 	var textAdjust = ctx.measureText("0").height;
 	ctx.fillText(h, x / 2, (y / 2) - (textAdjust * 1.25));
 	ctx.fillText(m, x / 2, (y / 2) - 13 + (textAdjust * 0.25));
+	
+	ctx.font = "18px Gothic";
+	red = extendString(red.toString(16), 2);
+	green = extendString(green.toString(16), 2);
+	blue = extendString(blue.toString(16), 2);
+	var colorString = red + green + blue;
+	ctx.fillText(colorString, x / 2, (y / 2) + (textAdjust * 1.5));
 }
 
 function dateToHex(d, h, m) {
