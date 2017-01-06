@@ -20,14 +20,17 @@ function drawBackground(ctx, color, d, h, m, x, y) {
 }
 
 function drawTime(ctx, color, d, h, m, x, y) {
+	// TODO: Fix this code splitting hex into individual values again
 	var hex = "0x";
 	var colorList = color.split("");
 	var red = hex.concat(colorList.slice(1, 3));
 	var green = hex.concat(colorList.slice(3, 5));
 	var blue = hex.concat(colorList.slice(5));
+	console.log(red + green + blue);
 	red = parseInt(red, 10);
 	green = parseInt(green, 10);
 	blue = parseInt(blue, 10);
+	console.log(red + " : " + green + " : " + blue);
 	
 	if ((0.299 * red + 0.587 * green + 0.114 * blue) > 127) {
 		ctx.fillStyle = "black";
