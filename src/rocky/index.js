@@ -1,5 +1,7 @@
 var rocky = require("rocky");
 
+var settings = null;
+
 function draw(ctx) {
 	var d = new Date();
 	var w = ctx.canvas.unobstructedWidth;
@@ -46,7 +48,20 @@ function drawTime(ctx, color, d, h, m, x, y) {
 	green = extendString(green.toString(16), 2);
 	blue = extendString(blue.toString(16), 2);
 	var colorString = red + green + blue;
-	ctx.fillText(colorString, x / 2, (y / 2) + (textAdjust * 1.5));
+	
+	d = extendString(d.toString(), 2);
+	var dateHeightAdjust = (y / 2) - ctx.measureText(d).height;
+	
+	if (settings) {
+		if (settings.showHex) {
+			ctx.fillText(colorString, x / 2, (y / 2) + (textAdjust * 1.5));
+		}
+		if (settings.showDate) {
+			ctx.fillText(d, x / 2, dateHeightAdjust - (textAdjust * 1.5));
+		}
+	} else {
+		ctx.fillText(colorString, x / 2, (y / 2) + (textAdjust * 1.5));
+	}
 }
 
 function dateToHex(d, h, m) {
@@ -83,3 +98,10 @@ rocky.on("draw", function(event) {
 rocky.on("minutechange", function(event) {
 	rocky.requestDraw();
 });
+
+rocky.on('message', function(event) {
+  settings = event.data;
+  rocky.requestDraw();
+});
+
+rocky.postMessage({command: 'settings'});
