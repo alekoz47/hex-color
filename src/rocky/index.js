@@ -35,19 +35,18 @@ function drawTime(ctx, color, d, h, m, x, y) {
 	ctx.fillText(m, x / 2, (y / 2) - 13 + (textAdjust * 0.25));
 	
 	ctx.font = "18px Gothic";
+	var dateString = extendString(d.toString(), 2);
 	color.red = extendString(color.red.toString(16), 2);
 	color.green = extendString(color.green.toString(16), 2);
 	color.blue = extendString(color.blue.toString(16), 2);
 	var colorString = color.red + color.green + color.blue;
-	d = extendString(d.toString(), 2);
-	var dateHeightAdjust = (y / 2) - ctx.measureText(d).height;
 	
 	if (settings) {
 		if (settings.showHex) {
 			ctx.fillText(colorString, x / 2, (y / 2) + (textAdjust * 1.5));
 		}
 		if (settings.showDate) {
-			ctx.fillText(d, x / 2, dateHeightAdjust - (textAdjust * 1.5));
+			ctx.fillText(dateString, x / 2, (y / 2) - (textAdjust * 1.5));
 		}
 	} else {
 		ctx.fillText(colorString, x / 2, (y / 2) + (textAdjust * 1.5));
