@@ -3,10 +3,10 @@ var rocky = require("rocky");
 var settings = null;
 
 function draw(ctx) {
-	var d = new Date();
 	var w = ctx.canvas.unobstructedWidth;
 	var h = ctx.canvas.unobstructedHeight;
-	var days = d.getDay();
+	var d = new Date();
+	var days = d.getDate();
 	var hours = d.getHours();
 	var minutes = d.getMinutes();
 	var color = dateToHex(days, hours, minutes);
@@ -40,13 +40,14 @@ function drawTime(ctx, color, d, h, m, x, y) {
 	color.green = extendString(color.green.toString(16), 2);
 	color.blue = extendString(color.blue.toString(16), 2);
 	var colorString = color.red + color.green + color.blue;
+	var dateHeightAdjust = (y / 2) - ctx.measureText(d).height;
 	
 	if (settings) {
 		if (settings.showHex) {
 			ctx.fillText(colorString, x / 2, (y / 2) + (textAdjust * 1.5));
 		}
 		if (settings.showDate) {
-			ctx.fillText(dateString, x / 2, (y / 2) - (textAdjust * 1.5));
+			ctx.fillText(dateString, x / 2, dateHeightAdjust - (textAdjust * 1.5));
 		}
 	} else {
 		ctx.fillText(colorString, x / 2, (y / 2) + (textAdjust * 1.5));
