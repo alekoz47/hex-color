@@ -4,6 +4,9 @@
     "keywords": [],
     "name": "hex-color",
     "pebble": {
+        "capabilities": [
+            "configurable"
+        ],
         "displayName": "Hex Color",
         "enableMultiJS": true,
         "messageKeys": [],
@@ -21,5 +24,5 @@
             "watchface": true
         }
     },
-    "version": "3.0.0"
+    "version": "3.1.0"
 }
